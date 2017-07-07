@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+
+  vault-ui:
+    image: djenriquez/vault-ui
+    environment:
+      VAULT_URL_DEFAULT: https://${VAULT_DOMAIN}
+    labels:
+      traefik.port: '8000'
+      traefik.enable: 'true'
+
+  vault:
+    privileged: true
+    image: vault:0.7.2
+    environment:
+      VAULT_LOCAL_CONFIG: '{ "storage": { "azure": { "accountName": "${AZURE_ACCOUNT_NAME}",
+        "accountKey": "${AZURE_ACCOUNT_KEY}",
+        "container": "${AZURE_ACCOUNT_CONTAINER}" } }, "listener": { "tcp": { "address": "0.0.0.0:8200",
+        "tls_disable": 1 } } }'
+    command:
+    - server
+    labels:
+      traefik.port: '8200'
+      traefik.enable: 'true'
