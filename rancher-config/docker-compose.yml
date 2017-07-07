@@ -12,7 +12,7 @@ services:
 
   vault:
     privileged: true
-    image: vault:0.7.2
+    image: vault:0.7.3
     environment:
       VAULT_LOCAL_CONFIG: '{ "storage": { "azure": { "accountName": "${AZURE_ACCOUNT_NAME}",
         "accountKey": "${AZURE_ACCOUNT_KEY}",
