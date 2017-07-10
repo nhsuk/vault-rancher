@@ -7,8 +7,9 @@ services:
     environment:
       VAULT_URL_DEFAULT: https://${VAULT_DOMAIN}
     labels:
+      traefik.enable: true
+      traefik.frontend.rule: "Host: vault-ui.nhschoices.net"
       traefik.port: '8000'
-      traefik.enable: 'true'
 
   vault:
     privileged: true
@@ -21,5 +22,6 @@ services:
     command:
     - server
     labels:
+      traefik.enable: true
+      traefik.frontend.rule: "Host: vault.nhschoices.net"
       traefik.port: '8200'
-      traefik.enable: 'true'
