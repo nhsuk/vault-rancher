@@ -25,3 +25,14 @@ services:
       traefik.enable: true
       traefik.frontend.rule: "Host: ${VAULT_DOMAIN}"
       traefik.port: '8200'
+    logging:
+      driver: splunk
+      options:
+        splunk-format: raw
+        splunk-insecureskipverify: 'true'
+        splunk-source: vault-audit
+        splunk-sourcetype: stdout
+        splunk-token: ${SPLUNK_TOKEN}
+        splunk-url: ${SPLUNK_URL}
+        splunk-verify-connection: 'false'
+        tag: imagename={{.ImageName}} containername={{.Name}} containerid={{.FullID}}
