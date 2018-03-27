@@ -28,7 +28,7 @@ services:
     logging:
       driver: splunk
       options:
-        splunk-format: raw
+        splunk-format: json
         splunk-insecureskipverify: 'true'
         splunk-source: vault-audit
         splunk-sourcetype: stdout
